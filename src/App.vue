@@ -1,47 +1,32 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { reactive, ref } from 'vue';
+import finimage from '@/assets/img/finance.jpg';
+import NavBar from './components/NavBar.vue';
+import Home from './components/pages/Home.vue';
+import Footer from './components/Footer.vue';
+const name: string = "fefwew";
+const input = ref<string>('');
+interface NumberList {
+  listname?: string
+  numbers: number[]
+}
+const list : NumberList = reactive({
+  listname: "janmes",
+  numbers: [1,2,3555,5]
+});
+
+function clickListener() {
+  list.numbers[2] = 3;
+  console.log(list)
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <NavBar></NavBar>
+  <Home></Home>
+  <Footer></Footer>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<style>
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
