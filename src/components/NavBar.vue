@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router';
+
 </script>
 
 <template>
   <nav class="navbar">
-    <a class="nav-link" routerLink="/">Home</a>
-    <a class="nav-link" routerLink="about">About</a>
-    <a class="nav-link" href="#">Login</a>
+    <RouterLink class="nav-link" to="/">Home</RouterLink>
+    <RouterLink class="nav-link" to="about">About</RouterLink>
+    <RouterLink class="nav-link" to="login">Login</RouterLink>
 </nav>
 </template>
 
