@@ -5,10 +5,18 @@
   "compilerOptions": {
     "composite": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-
+    "types": ["vite/client", "vuex", "vuex/types"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true, // Include Vuex types here
+    "lib": ["esnext", "dom"]
   }
 }

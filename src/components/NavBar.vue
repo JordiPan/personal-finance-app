@@ -1,14 +1,33 @@
 <script setup lang="ts">
+import router from '@/router/router';
+import { computed } from 'vue';
 import { RouterLink } from 'vue-router';
+import { useStore } from 'vuex';
+
+const store = useStore();
+const isAuthenticated = computed(() => store.getters.isAuthenticated);
+
+
+function logout() {
+  store.dispatch('logout');
+  router.push({name: 'home'});
+}
 
 </script>
 
 <template>
-  <nav class="navbar">
-    <RouterLink class="nav-link" to="/">Home</RouterLink>
+  <nav class="navbar"v-if="isAuthenticated">
+      <RouterLink class="nav-link" to="user-home">Home</RouterLink>
+    <RouterLink class="nav-link" to="user-home">Categories</RouterLink>
+    <RouterLink class="nav-link" to="user-home">Profile</RouterLink>
+    <a class="nav-link" v-on:click="logout()">Logout</a>
+</nav>
+<nav class="navbar" v-else>
+  <RouterLink class="nav-link" to="/">Home</RouterLink>
     <RouterLink class="nav-link" to="about">About</RouterLink>
     <RouterLink class="nav-link" to="login">Login</RouterLink>
 </nav>
+
 </template>
 
 <style scoped>

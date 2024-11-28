@@ -2,6 +2,8 @@ import { createRouter, createWebHistory,type RouteRecordRaw } from "vue-router";
 import Home from "@/views/Home.vue";
 import About from "@/views/About.vue";
 import Login from "@/views/Login.vue";
+import Register from "@/views/Register.vue";
+import UserHome from "@/views/user-pages/UserHome.vue";
 
 interface RouteMeta {
     title: string;
@@ -25,6 +27,27 @@ const routes: Array<RouteRecordRaw & { meta: RouteMeta }> = [
             name: 'login',
             component: Login,
             meta: { title: 'LOGIN' }
+        },
+        {
+            path: '/register',
+            name: 'register',
+            component: Register,
+            meta: { title: 'REGISTER' }
+        },
+        {
+            path: '/user',
+            name: 'user-home',
+            component: UserHome,
+            meta: { title: 'user homepage' },
+            beforeEnter: (to, from, next) => {
+                const token = localStorage.getItem('token');
+                if(!token) {
+                    next({name: 'home'});
+                }
+                else {
+                    next();
+                }
+            }
         },
 ]
 
