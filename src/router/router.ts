@@ -4,6 +4,8 @@ import About from "@/views/About.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
 import UserHome from "@/views/user-pages/UserHome.vue";
+import UserProfile from "@/views/user-pages/UserProfile.vue";
+import User from "@/views/user-pages/User.vue";
 
 interface RouteMeta {
     title: string;
@@ -36,9 +38,18 @@ const routes: Array<RouteRecordRaw & { meta: RouteMeta }> = [
         },
         {
             path: '/user',
-            name: 'user-home',
-            component: UserHome,
-            meta: { title: 'user homepage' },
+            name: 'user',
+            component: User,
+            meta: { title: 'user' },
+            children: [
+                { path: '', name: 'user-home', component: UserHome, props: true},
+                {
+                path: 'profile',
+                name: 'profile',
+                component: UserProfile,
+                meta: { title: 'User profile' }
+                }
+            ],
             beforeEnter: (to, from, next) => {
                 const token = localStorage.getItem('token');
                 if(!token) {
@@ -52,7 +63,7 @@ const routes: Array<RouteRecordRaw & { meta: RouteMeta }> = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createWebHistory(),
     routes: routes
 })
 

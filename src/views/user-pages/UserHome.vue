@@ -1,18 +1,12 @@
 <script setup lang="ts">
-let storedUser = localStorage.getItem('user');
-let token =localStorage.getItem('token');
-let user : User | null = null;
-if(storedUser){
-    user = JSON.parse(storedUser);
-}
-
+import { useStore } from 'vuex';
+const store = useStore();
+let user = store.state.user
 </script>
 
 <template>
-  <div class="content">
-    <h1 v-if="user">Hey user: {{ user.first_name }} {{ user.last_name }} {{ token }}</h1>
-    <p>TESTTESTETESTXT</p>
-  </div>
+    <h1>User's home</h1>
+    <p>Yo: {{ user.first_name }}</p>
 </template>
 
 <style scoped>

@@ -17,9 +17,9 @@ function logout() {
 
 <template>
   <nav class="navbar"v-if="isAuthenticated">
-      <RouterLink class="nav-link" to="user-home">Home</RouterLink>
-    <RouterLink class="nav-link" to="user-home">Categories</RouterLink>
-    <RouterLink class="nav-link" to="user-home">Profile</RouterLink>
+      <RouterLink class="nav-link" :to="{name: 'user-home'}">Home</RouterLink>
+    <!-- <RouterLink class="nav-link" :to="{name: 'categories'}">Categories</RouterLink> -->
+    <RouterLink class="nav-link" :to="{name: 'profile'}">Profile</RouterLink>
     <a class="nav-link" v-on:click="logout()">Logout</a>
 </nav>
 <nav class="navbar" v-else>
